@@ -1,6 +1,4 @@
 import { useState } from "react";
-import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
 
 function Signup() {
   const [user, setUser] = useState({
@@ -9,52 +7,25 @@ function Signup() {
     password: "",
   });
 
-  const [showPassword, setShowPassword] = useState(false);
-
-  const navigate = useNavigate();
-
   const handleChange = (e) => {
-    setUser({
-      ...user,
-      [e.target.name]: e.target.value,
-    });
+    setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async () => {
-    if (!user.name || !user.email || !user.password) {
-      alert("Please fill all fields");
-      return;
-    }
-
-    try {
-      const response = await axios.post(
-        "https://ai-integrated-quiz-platform-final.onrender.com/api/users/signup",
-        user
-      );
-
-      alert(response.data.message);
-
-      navigate("/login");
-
-    } catch (error) {
-      console.log(error);
-      alert("Signup Failed");
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(user);
+    alert("Signup Successful");
   };
 
   return (
     <div className="container">
-      <div className="card">
+      <h2>Signup</h2>
 
-        <h1> Create Account</h1>
-
-        <p>Register to start your AI Quiz journey.</p>
-
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           name="name"
-          placeholder=" Enter Name"
-          value={user.name}
+          placeholder="Name"
           onChange={handleChange}
         />
 
@@ -63,56 +34,23 @@ function Signup() {
         <input
           type="email"
           name="email"
-          placeholder=" Enter Email"
-          value={user.email}
+          placeholder="Email"
           onChange={handleChange}
         />
 
         <br /><br />
 
         <input
-          type={showPassword ? "text" : "password"}
+          type="password"
           name="password"
-          placeholder=" Enter Password"
-          value={user.password}
+          placeholder="Password"
           onChange={handleChange}
         />
 
-        <div
-          style={{
-            textAlign: "right",
-            marginTop: "8px",
-            marginBottom: "15px",
-          }}
-        >
-          <button
-            type="button"
-            onClick={() => setShowPassword(!showPassword)}
-            style={{
-              width: "auto",
-              padding: "6px 12px",
-              fontSize: "14px",
-            }}
-          >
-            {showPassword ? " Hide" : "👁 Show"}
-          </button>
-        </div>
-
-        <button onClick={handleSubmit}>
-          Create Account
-        </button>
-
         <br /><br />
 
-        <p>Already have an account?</p>
-
-        <Link to="/login">
-          <button>
-            Login
-          </button>
-        </Link>
-
-      </div>
+        <button type="submit">Signup</button>
+      </form>
     </div>
   );
 }
