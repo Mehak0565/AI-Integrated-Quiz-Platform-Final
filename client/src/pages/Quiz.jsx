@@ -19,7 +19,7 @@ function Quiz() {
     const fetchQuiz = async () => {
       try {
         const res = await axios.post(
-          "https://ai-integrated-quiz-platform.onrender.com/api/ai/generate-quiz",
+          "https://ai-integrated-quiz-platform-final.onrender.com/api/ai/generate-quiz",
           {
             interest,
           }

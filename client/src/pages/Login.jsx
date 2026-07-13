@@ -27,7 +27,7 @@ function Login() {
 
     try {
       const response = await axios.post(
-        "https://ai-integrated-quiz-platform.onrender.com/api/users/login",
+        "https://ai-integrated-quiz-platform-final.onrender.com/api/users/login",
         user
       );
 

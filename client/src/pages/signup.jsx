@@ -28,7 +28,7 @@ function Signup() {
 
     try {
       const response = await axios.post(
-        "https://ai-integrated-quiz-platform.onrender.com/api/users/signup",
+        "https://ai-integrated-quiz-platform-final.onrender.com/api/users/signup",
         user
       );
 
